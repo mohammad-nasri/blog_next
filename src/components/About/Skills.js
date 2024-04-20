@@ -1,17 +1,17 @@
 const SkillList = [
+  "Flutter",
+  "Dart",
+  "React.js",
   "next.js",
   "tailwind css",
-  "figma",
   "javaScript",
   "web design",
-  "Gatsby.js",
-  "strapi",
   "firebase",
-  "generative AI",
+  "UI/UX",
+  "figma",
   "wireframing",
-  "SEO",
-  "framer motion",
-  "sanity",
+
+
 ];
 
 const Skills = () => {

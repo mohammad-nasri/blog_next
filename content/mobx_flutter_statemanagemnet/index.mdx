@@ -1,0 +1,145 @@
+---
+title: "StateManagement in Flutter using MobX"
+description: "Uncover the fundamental concepts of RESTful APIs and their crucial role in modern web application development."
+image: "../../public/blogs/mobx_cover.png"
+publishedAt: "2024-4-9"
+updatedAt: "2024-4-9"
+author: "Mohammad Nasri"
+isPublished: true
+tags:
+- state Management
+---
+
+
+
+
+
+
+mobx is one of the statement libraries in flutter,
+
+There are many of the great State Managements Packages in Flutter like Bloc, Provider, river-pod and so on...
+
+How does mobX align between those state Management ?
+
+In my opinion mobX is very good for small to medium applications
+because it provides a single source for data which normally called a box.
+
+
+## Steps To apply mobX logic in your flutter project:
+
+> do not forget to import the package from https://pub.dev/packages/mobx
+
+1. make a file (let's call it AppStore.dart)
+
+_Rules:_
+- **put annotation (@observable) for every variable need to change.**
+- **put annotation (@action) for every function which can change a variable**
+
+```dart
+class AppStore = _AppStore with _$AppStore;
+
+abstract class _AppStore with Store {
+
+
+
+@observable
+bool isLoading = false;
+
+@action
+void setLoading(bool val) {
+isLoading = val;
+}
+}
+```
+
+
+
+2. make a global instance to access all variables and function everywhere in the code.
+
+```dart
+AppStore appStore = AppStore();
+```
+
+3. wrap your MaterialApp widget with ``observer()``
+
+4. after any edit in the appstore.dart file you should run the foollowing command to apply changes to the generated file:
+``` flutter packages pub run build_runner build --delete-conflicting-outputs ```
+
+5. for usage inside the code:
+
+- Example 1 is to put every thing inside stack
+
+```dart
+Future<List<ServiceData>>? future;
+
+Future<void> init() async {
+future = getWishlist(page, services: services, lastPageCallBack: (p0) {
+isLastPage = p0;
+});
+}
+
+@override
+void initState() {
+super.initState();
+init();
+}
+
+Scaffold(
+appBar: appBarWidget(),
+body: Stack(
+children: [
+FutureBuilder<List<ServiceData>>(
+future: future,
+initialData: cachedServiceFavList,
+builder: (context, snap) {
+if (snap.hasData) {
+if (snap.data.validate().isEmpty)
+return NoDataWidget(
+title: language.lblNoServicesFound,
+subTitle: language.noFavouriteSubTitle,
+imageWidget: EmptyStateWidget(),
+);
+return Container()
+}
+
+// data did not come yet
+return snapWidgetHelper(
+snap,
+loadingWidget: FavouriteServiceShimmer(),
+errorBuilder: (error) {
+return NoDataWidget(
+title: error,
+imageWidget: ErrorStateWidget(),
+retryText: language.reload,
+onRetry: () {
+page = 1;
+appStore.setLoading(true);
+init();
+setState(() {});
+},
+);
+},
+);
+
+// and at the end put the loading if it was loading
+Observer(builder: (context) => LoaderWidget().visible(appStore.isLoading)),
+]
+
+// you can use the shimmer or the loading widget or both
+// shimmer depends on the given future, or observer loading depends on the appStore.setLoading()
+));
+
+```
+
+
+---
+
+<Image
+    src="/blogs/mobx_cover_twitter.png"
+    width="718"
+    height="404"
+    alt="Image"
+    sizes="100vw"
+/>
+
+---

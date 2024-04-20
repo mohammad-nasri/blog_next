@@ -1,20 +1,20 @@
 // please update required information
 const siteMetadata = {
-    title: 'Next.js Blog With Tailwind CSS and Contentlayer',
-    author: 'CodeBucks',
-    headerTitle: 'Next.js Blog',
-    description: 'A blog created with Next.js, Tailwind.css and contentlayer.',
+    title: 'Technology & Programming',
+    author: 'Mohammad Nasri',
+    headerTitle: 'Tech Blog ',
+    description: 'Tech Blog for flutter framework and its integrations and technology in general',
     language: 'en-us',
     theme: 'system', // system, dark or light
     siteUrl: 'https://create-blog-with-nextjs.vercel.app', // your website URL
-    siteLogo: '/logo.png',
+    siteLogo: '/logo_rabiee_nobackground.png',
     socialBanner: '/social-banner.png', // add social banner in the public folder
-    email: 'codebucks27@gmail.com', 
-    github: 'https://github.com/codebucks27',
-    twitter: 'https://twitter.com/code_bucks',
+    email: 'm.rabiee.n.99@hotmail.com ',
+    github: 'https://github.com/',
+    twitter: 'https://twitter.com/MohammadRNasri',
     facebook: 'https://facebook.com',
-    youtube: 'https://youtube.com/codebucks',
-    linkedin: 'https://www.linkedin.com/in/codebucks/',
+    youtube: 'https://youtube.com/',
+    linkedin: 'https://www.linkedin.com/in/m-r-nasri/',
     dribbble: 'https://www.dribbble.com',
     locale: 'en-US',
   }

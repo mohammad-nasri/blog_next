@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import profileCharacter from "../../../public/character.png"
+import profileCharacter from "../../../public/logo_rabiee_nobackground.png"
 
 const AboutCoverSection = () => {
   return (
@@ -18,7 +18,7 @@ const AboutCoverSection = () => {
             Dream Big, Work Hard, Achieve More!
             </h2>
             <p className='font-medium capitalize mt-4 text-base'>
-            This Mantra Drives My Work As A Passionate Freelancer. I Blend Innovative Technology With Timeless Design For Captivating Digital Experiences. Inspired By Nature And Literature, I'm A Perpetual Learner Embracing Challenges. With Each Project, I Aim To Leave A Lasting Impact—One Pixel At A Time.
+                Mobile Application Engineer, Developing for Android & iOS, with more than four years of experience. Have great skills in cross-platform development using the Flutter framework.
             </p>
         </div>
     </section>

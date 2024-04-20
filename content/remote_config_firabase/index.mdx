@@ -1,0 +1,65 @@
+---
+title: "Firebase Remote config in flutter"
+description: "Uncover the fundamental concepts of RESTful APIs and their crucial role in modern web application development."
+image: "../../public/blogs/firebase_remote_config_cover.png"
+publishedAt: "2024-4-10"
+updatedAt: "2024-4-10"
+author: "Mohammad Nasri"
+isPublished: true
+tags:
+- integrations
+---
+
+
+
+1-- create Model as you did in the console:
+
+```dart
+class RemoteConfigDataModel {
+bool? isForceUpdate;
+bool? inMaintenanceMode;
+
+RemoteConfigDataModel({
+this.isForceUpdate,
+this.inMaintenanceMode,
+
+});
+
+RemoteConfigDataModel.fromJson(dynamic json) {
+isForceUpdate = json['isForceUpdate'] ?? false;
+inMaintenanceMode = json['inMaintenanceMode'] ?? false;
+
+}
+
+Map<String, dynamic> toJson() {
+final map = <String, dynamic>{};
+map['isForceUpdate'] = isForceUpdate;
+map['inMaintenanceMode'] = inMaintenanceMode;
+
+}
+```
+
+2-- put global instance in the main:
+```
+RemoteConfigDataModel remoteConfigDataModel = RemoteConfigDataModel();
+```
+
+3--
+
+```dart
+Future<FirebaseRemoteConfig> setupFirebaseRemoteConfig() async {
+final FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.instance;
+
+try {
+remoteConfig
+.setConfigSettings(RemoteConfigSettings(fetchTimeout: Duration.zero, minimumFetchInterval: Duration.zero));
+await remoteConfig.fetch();
+await remoteConfig.fetchAndActivate();
+} catch (e) {
+throw language.firebaseRemoteCannotBe;
+}
+remoteConfigDataModel = RemoteConfigDataModel.fromJson(jsonDecode(remoteConfig.getString("USER_CHANGE_LOG")));
+return remoteConfig;
+```
+
+4-- finally do not forget to call setupFirebaseRemoteConfig() at the main.dart

@@ -1,0 +1,38 @@
+---
+title: "nb_util package"
+description: "Uncover the fundamental concepts of RESTful APIs and their crucial role in modern web application development."
+image: "../../public/blogs/nb_util_cover.png"
+publishedAt: "2024-4-10"
+updatedAt: "2024-4-10"
+author: "Mohammad Nasri"
+isPublished: true
+tags:
+- packages
+---
+
+
+
+using this library: https://pub.dev/packages/nb_utils
+
+// Returns to previous Screen
+finish(context);
+
+// Returns to previous Screen with a result. (this is very handy for a little of state management)
+finish(context, object);
+
+// Example:
+finish(context, true);
+
+      on the previous screen which navigated to the given screen we put like this to get the returened value:
+
+/// Toast a String
+toast('This is a string');
+
+/// Prints only if in debug or profile mode - (parameter is Object)
+log('Your string');
+
+/// add a Double in SharedPref
+await setValue("key", 20.0);
+
+/// Returns a Double if exists in SharedPref
+getDoubleAsync("key");
