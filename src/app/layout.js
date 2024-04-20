@@ -70,11 +70,11 @@ export default function RootLayout({ children }) {
   } else {
     document.documentElement.classList.remove('dark')
   }`}
-        <Analytics />
         </Script>
         <Header />
         {children}
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
